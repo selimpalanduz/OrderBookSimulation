@@ -68,6 +68,21 @@ public class OrderBook {
             }
         }
     }
+    public void printTop() {
+        Integer bestBid = bids.isEmpty() ? null : bids.firstKey();
+        Integer bestAsk = asks.isEmpty() ? null : asks.firstKey();
+        System.out.println("TOP: BID=" + (bestBid == null ? "-" : bestBid) +
+                " | ASK=" + (bestAsk == null ? "-" : bestAsk));
+    }
+    public static void main(String[] args) {
+        OrderBook ob = new OrderBook();
+
+        ob.addLimit(1, Side.SELL, 10, 1_000_000);
+        ob.printTop();
+
+        ob.addLimit(2, Side.BUY, 13, 1_000_000);
+        ob.printTop();
+    }
 }
 enum Side {BUY,SELL}
 class Order {
